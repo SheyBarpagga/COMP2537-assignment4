@@ -75,6 +75,73 @@
                 width: 30%;
             }
 
+            #user-table {
+                width: 100%;
+                border: 1px solid #eceeef;
+            }
+            table th, td {
+                padding: 0.75rem;
+                vertical-align: top;
+                border-top: 1px solid #eceeef;
+            }
+            .center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            form {
+                padding: 2%;
+                margin: 5%;
+                width: 40vw;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                outline-width: 3px;
+                border-radius: 15px;
+                background-color: rgba(229, 229, 224, 1);
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+            }
+            input {
+                /* width: 70%; */
+                padding: 12px 20px;
+                margin: 5%;
+                box-sizing: border-box;
+                outline-width: 3px;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+            }
+            .abutton {
+                cursor: pointer;
+                text-align: center;
+                display: inline-block;
+                width: 50%;
+                height: 2%;
+                outline-width: 3px;
+                border-radius: 15px;
+                background-color: rgba(229, 229, 224, 1);
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);                
+                align-self: center;
+            }
+
+            .abutton a:link, a:visited {
+                color: white;
+                padding: 20%;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                outline-width: 3px;
+                border-radius: 15px;
+                background-color: rgba(229, 229, 224, 1);
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+            }
+
+            a.abutton a:hover, a:active {
+                background-color: rgba(0, 0, 0, 0.354);
+                outline-width: 3px;
+                border-radius: 15px;
+                background-color: rgba(229, 229, 224, 1);
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+            }
 
         </style>
 
@@ -90,7 +157,7 @@
         </header>
 
         <div id="main-container">
-            <div>
+            <div class="center">
                 <table id="user-table">
                     <tr>
                         <thead>
@@ -108,7 +175,18 @@
                     </tr>
                 </table>
             </div>
+            <form>
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email">
 
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password">
+
+                <label for="type">Type: </label>
+                <input type="text" id="type" name="type">
+
+                <a class="abutton" id="add">Add User</a>
+            </form>
         </div>
 
 
