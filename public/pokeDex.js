@@ -1,13 +1,13 @@
 
 var counter = 0;
 document.addEventListener("DOMContentLoaded", () => {
-    var l = localStorage.getItem("loggedin") 
+    var l = sessionStorage.getItem("loggedin") 
     if (l == "false") {
         return window.location.href = "/login.html";
     }
     getPoke();
     document.getElementById("logout").addEventListener("click", () => {
-        localStorage.setItem("logged-in", false);
+        sessionStorage.setItem("logged-in", false);
     })
     document.getElementById("checkout").addEventListener("click", () => {
         return window.location.href = "/checkout.html";
@@ -100,7 +100,7 @@ function getPokepokemon(pokemon) {
 
         pokeLink.addEventListener("click", () => {
             console.log(pokeLink);
-            localStorage.setItem("pokemon", pokemon.name);
+            sessionStorage.setItem("pokemon", pokemon.name);
             addNewEvent(pokemon.name);
         })
 }
@@ -124,9 +124,9 @@ function addNewEvent(poke_name) {
 
 function addToCart(poke_id) {
 
-    var cart = localStorage.getItem("cart");
+    var cart = sessionStorage.getItem("cart");
     cart = `${cart} ${poke_id}`
-    localStorage.setItem("cart", cart);
+    sessionStorage.setItem("cart", cart);
 
     let pokemonIMG = document.createElement("img");
     pokemonIMG.srcset = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${poke_id}.png`;

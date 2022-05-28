@@ -155,7 +155,7 @@ function addItem(pokemon) {
 
     pokeLink.addEventListener("click", () => {
         console.log(pokeLink);
-        localStorage.setItem("pokemon", pokeLink.firstChild.firstChild.textContent);
+        sessionStorage.setItem("pokemon", pokeLink.firstChild.firstChild.textContent);
         addNewEvent(pokeLink.firstChild.firstChild.textContent);
         })
 }

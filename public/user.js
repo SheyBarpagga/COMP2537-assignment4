@@ -7,7 +7,7 @@ function prevOrder() {
     fetch(`https://pokedex-assignment3.herokuapp.com/carts/get`)
     .then(response => response.json())
     .then(function(data) {
-        var id = localStorage.getItem("user");
+        var id = sessionStorage.getItem("user");
         var orders = document.getElementById("orders");
         for (const element of data) {
             if (element.id == id) {

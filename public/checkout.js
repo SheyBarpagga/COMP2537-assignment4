@@ -1,9 +1,9 @@
 let price = 0;
-const cart = localStorage.getItem("cart");
+const cart = sessionStorage.getItem("cart");
 const cartItems = cart.split(" ");
 
 document.addEventListener("DOMContentLoaded", () => {
-    var l = localStorage.getItem("loggedin");
+    var l = sessionStorage.getItem("loggedin");
     if (l == "false") {
         return window.location.href = "/login.html";
     }
@@ -75,7 +75,7 @@ function getPokepokemon(pokemon) {
 
     pokeLink.addEventListener("click", () => {
         console.log(pokeLink);
-        localStorage.setItem("pokemon", pokemon.name);
+        sessionStorage.setItem("pokemon", pokemon.name);
     })
 }
 

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem("loggedin")) {
+    if (!sessionStorage.getItem("loggedin")) {
         return window.location.href = "/login.html";
     }
     getProfile();
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getProfile() {
 
-    let pokemon = localStorage.getItem("pokemon");
+    let pokemon = sessionStorage.getItem("pokemon");
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
 
