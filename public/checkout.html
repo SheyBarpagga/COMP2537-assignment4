@@ -122,21 +122,23 @@
 
     <script>
         function checkout() {
-    var id = localStorage.getItem("user");
-    var now = new Date(Date.now());
-    var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-    console.log(formatted);
-    $.ajax({
-        url: "https://pokedex-assignment3.herokuapp.com/carts",
-        type: "put",
-        data: {
-            pokemon: cartItems,
-            id: `${id}`
-        },
-        success: (res)=>{console.log(res)}
-    })
-    localStorage.setItem("cart", "");
-    // return window.location.href = "/";
+            var id = localStorage.getItem("user");
+            var now = new Date(Date.now());
+            var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            console.log(formatted);
+            $.ajax({
+                url: "https://pokedex-assignment3.herokuapp.com/carts",
+                type: "put",
+                data: {
+                    pokemon: cartItems,
+                    id: `${id}`
+                },
+                success: (res)=>{console.log(res)}
+            }).then(() => {
+            localStorage.setItem("cart", "");
+            return window.location.href = "/";
+            })
+
 }
 
     </script>
