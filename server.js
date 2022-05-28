@@ -33,6 +33,7 @@ const UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     cartHistory: Array,
+    type: String
 })
 
 const CartSchema = new mongoose.Schema({
@@ -129,6 +130,12 @@ app.get('https://pokedex-assignment3.herokuapp.com/profile.html', function(req, 
 app.get('https://pokedex-assignment3.herokuapp.com/search.html', function(req, res) {
 
       res.send('/public/search.html');
+
+});
+
+app.get('https://pokedex-assignment3.herokuapp.com/admin.html', function(req, res) {
+
+      res.send('/public/admin.html');
 
 });
 

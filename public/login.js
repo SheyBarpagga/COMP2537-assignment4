@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(function(data) {
             data.forEach(element => {
                 if(((element.email).trim().localeCompare(email)) == 0 && ((element.password).trim().localeCompare(password)) == 0) {
+                    if((element.type).trim().localeCompare('admin') == 0) {
+                        localStorage.setItem("logged-in", true);
+                        localStorage.setItem("user", `${element._id}`);
+                        localStorage.setItem("cart", []);
+                        return window.location.href = "/admin.html";
+                    }
                     localStorage.setItem("logged-in", true);
                     localStorage.setItem("user", `${element._id}`);
                     localStorage.setItem("cart", []);
