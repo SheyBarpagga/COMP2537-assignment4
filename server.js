@@ -93,7 +93,7 @@ app.post('/admin/update', function(req, res) {
 });
 })
 
-app.get("/admin/delete", function(req, res) {
+app.delete("/admin/delete", function(req, res) {
   cartModel.remove({
     '_id': req.body.id
   }, function(err, data){

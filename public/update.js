@@ -1,7 +1,15 @@
 $(document).ready(() => {
+    thisUser = sessionStorage.getItem("user");
     user = sessionStorage.getItem("update");
+
     $("#label").html(`User: ${user}`);
     $("#update").on("click", updateUser);
+
+    if(!(thisUser === user)) {
+        $("#delete").on("click", deleteUser);
+    } else {
+        $("#delete").remove();
+    }
 })
 
 function updateUser() {
@@ -27,19 +35,18 @@ function updateUser() {
 }
 
 function deleteUser() {
+
     id = sessionStorage.getItem("update");
+    id = id.trim();
     email = $("#email").val();
     password = $("#password").val();
     type = $("#type").val();
 
     $.ajax({
         url: "https://fathomless-fortress-22361.herokuapp.com/admin/delete",
-        type: "post",
+        type: "delete",
         data: {
-            id: `${id}`,
-            email: `${email}`,
-            password: `${password}`,
-            type: `${type}`
+            id: `${id}`
         },
         success: function() {
             window.location.href = '/admin.html';
