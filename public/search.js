@@ -165,7 +165,7 @@ function addNewEvent(poke_name) {
     var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
     console.log(formatted);
     $.ajax({
-        url: "https://pokedex-assignment3.herokuapp.com/times/insert",
+        url: "https://fathomless-fortress-22361.herokuapp.com/times/insert",
         type: "put",
         data: {
             text: `${poke_name}`,

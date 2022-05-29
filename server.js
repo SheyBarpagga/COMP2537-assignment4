@@ -70,6 +70,22 @@ app.get("/user", function(req, res) {
 });
 })
 
+app.put("/admin/insert", function(req, res) {
+  userModel.create({
+    'email': req.body.email,
+    'password': req.body.password,
+    'cartHistory': [],
+    'type': req.body.type
+  }, function(err, data) {
+    if (err){
+      console.log("Error " + err);
+    }else{
+      console.log("Data "+ JSON.stringify(data) );
+    }
+    res.send(JSON.stringify(data));
+  });
+})
+
 app.put("/carts", function(req, res) {
   cartModel.create({
     'pokemon': req.body.pokemon,
@@ -110,30 +126,30 @@ app.put('/times/insert', function(req, res) {
 });
 })
 
-app.get('https://pokedex-assignment3.herokuapp.com/', function(req, res) {
+app.get('https://fathomless-fortress-22361.herokuapp.com/', function(req, res) {
 
     res.send('/public/login.html');
     
 });
 
-app.get('https://pokedex-assignment3.herokuapp.com/index.html', function(req, res) {
+app.get('https://fathomless-fortress-22361.herokuapp.com/index.html', function(req, res) {
 
     res.send('/public/index.html');
 
 });
 
-app.get('https://pokedex-assignment3.herokuapp.com/profile.html', function(req, res) {
+app.get('https://fathomless-fortress-22361.herokuapp.com/profile.html', function(req, res) {
       res.send('/public/profile.html');
 
 });
 
-app.get('https://pokedex-assignment3.herokuapp.com/search.html', function(req, res) {
+app.get('https://fathomless-fortress-22361.herokuapp.com/search.html', function(req, res) {
 
       res.send('/public/search.html');
 
 });
 
-app.get('https://pokedex-assignment3.herokuapp.com/admin.html', function(req, res) {
+app.get('https://fathomless-fortress-22361.herokuapp.com/admin.html', function(req, res) {
 
       res.send('/public/admin.html');
 

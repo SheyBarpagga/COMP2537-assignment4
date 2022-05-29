@@ -1,17 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(() => {
     getUser();
+    $("#add").bind("click", createUser);
 })
 
 function getUser() {
 
     $.ajax({
-        url: "https://pokedex-assignment3.herokuapp.com/user",
+        url: "https://fathomless-fortress-22361.herokuapp.com/user",
         type: "get",
         success: function(data) {
         var id = sessionStorage.getItem("user");
         var table = document.getElementById("user-table");
         data = $.parseJSON(data);
         for (const element of data) {
+
             tr = table.insertRow();
 
             var id = tr.insertCell();
@@ -32,7 +34,26 @@ function getUser() {
             email.appendChild(document.createTextNode(`${element.email}`));
             type.appendChild(document.createTextNode(`${element.type}`));
             update.appendChild(updateA);
+
         }
     }
+    })
+}
+
+function createUser() {
+
+    email = $("#email").text();
+    password = $("#password").text();
+    type = $("#type").text();
+
+    $.ajax({
+        url: "https://fathomless-fortress-22361.herokuapp.com/admin/insert",
+        type: "put",
+        data: {
+            email: `${email}`,
+            password: `${password}`,
+            type: `${type}`
+        },
+        success: (res)=>{console.log(res)}
     })
 }

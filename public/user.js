@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 }) 
 
 function prevOrder() {
-    fetch(`https://pokedex-assignment3.herokuapp.com/carts/get`)
+    fetch(`https://fathomless-fortress-22361.herokuapp.com/carts/get`)
     .then(response => response.json())
     .then(function(data) {
         var id = sessionStorage.getItem("user");
@@ -23,7 +23,7 @@ function prevOrder() {
 }
 
 function tl() {
-    fetch(`https://pokedex-assignment3.herokuapp.com/times/getAllEvents`)
+    fetch(`https://fathomless-fortress-22361.herokuapp.com/times/getAllEvents`)
     .then(response => response.json())
     .then(function(data) {
         var tl = document.getElementById("timeline");
