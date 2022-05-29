@@ -17,9 +17,7 @@ function clickCard() {
             firstCard = $(this).find('.frontface')[0]
             hasFlippedCard = true;
         }else{
-            // 2nd card
             secondCard =  $(this).find('.frontface')[0]
-            console.log(firstCard, secondCard);
             hasFlippedCard = false;
             console.log($(`#${firstCard.id}`))
             console.log($(`#${secondCard.id}`))
@@ -30,9 +28,11 @@ function clickCard() {
                 )
             {
                 console.log("A Match!");
+
                 var oldF = firstCard.parentElement;
                 var newNodeF = oldF.cloneNode(true);
                 oldF.parentElement.replaceChild(newNodeF, oldF);
+
                 var oldS = secondCard.parentElement;
                 var newNodeS = oldS.cloneNode(true);
                 oldS.parentElement.replaceChild(newNodeS, oldS);

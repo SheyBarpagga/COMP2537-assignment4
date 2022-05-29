@@ -153,11 +153,12 @@
             .backface, .frontface{
                 width: 100%;
                 height: 100%;
-                /* position: absolute; */
+                /*  */
                 backface-visibility: hidden;
             }
 
             .frontface{
+                position: absolute;
                 transform: rotateY(180deg);
             }
 
@@ -166,6 +167,11 @@
                 flex-wrap: wrap;
                 align-items: center;
                 perspective: 1000px;
+            }
+            #outer {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
             }
 
         </style>
@@ -199,9 +205,14 @@
                     <a class="abutton" id="start">start</a>
                 </form>
             </div>
-            <div id="game-cont" class="game-cont">
+            <div id="outer">
+                <div class="center-75">
+                    <div id="game-cont" class="game-cont">
 
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <footer>
