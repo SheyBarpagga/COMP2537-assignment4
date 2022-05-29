@@ -1,6 +1,7 @@
 $(document).ready(() => {
     user = sessionStorage.getItem("update");
     $("#label").html(`User: ${user}`);
+    $("#update").on("click", updateUser);
 })
 
 function updateUser() {

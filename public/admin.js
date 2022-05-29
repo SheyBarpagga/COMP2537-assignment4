@@ -1,6 +1,6 @@
 $(document).ready(() => {
     getUser();
-    $("#add").bind("click", createUser);
+    $("#add").on("click", createUser);
 })
 
 function getUser() {
