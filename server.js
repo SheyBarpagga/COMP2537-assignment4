@@ -47,17 +47,7 @@ const timeLineModel = mongoose.model("times", TimesSchema);
 
 const cartModel = mongoose.model("cart", CartSchema);
 
-app.get('/times/getAllEvents', function(req, res) {
 
-  timeLineModel.find({}, function(err, data){
-      if (err){
-        console.log("Error " + err);
-      }else{
-        console.log("Data "+ JSON.stringify(data) );
-      }
-      res.send(JSON.stringify(data));
-  });
-})
 
 app.get("/user", function(req, res) {
   userModel.find({}, function(err, data){
@@ -83,6 +73,36 @@ app.put("/admin/insert", function(req, res) {
       console.log("Data "+ JSON.stringify(data) );
     }
     res.send(JSON.stringify(data));
+  });
+})
+
+app.post('/admin/update', function(req, res) {
+  userModel.updateOne({"_id": req.body.id},{
+    $set:{
+      'email': req.body.email,
+      'password': req.body.password,
+      'type': req.body.type
+    }
+  }, function(err, data){
+    if (err){
+      console.log("Error " + err);
+    }else{
+      console.log("Data "+ JSON.stringify(data) );
+    }
+    res.send(JSON.stringify(data));
+});
+})
+
+app.get("/admin/delete", function(req, res) {
+  cartModel.remove({
+    '_id': req.body.id
+  }, function(err, data){
+      if (err){
+        console.log("Error " + err);
+      }else{
+        console.log("Data "+ JSON.stringify(data) );
+      }
+      res.send(JSON.stringify(data));
   });
 })
 
@@ -125,6 +145,21 @@ app.put('/times/insert', function(req, res) {
     res.send(JSON.stringify(data));
 });
 })
+
+app.get('/times/getAllEvents', function(req, res) {
+
+  timeLineModel.find({}, function(err, data){
+      if (err){
+        console.log("Error " + err);
+      }else{
+        console.log("Data "+ JSON.stringify(data) );
+      }
+      res.send(JSON.stringify(data));
+  });
+})
+
+
+
 
 app.get('https://fathomless-fortress-22361.herokuapp.com/', function(req, res) {
 
