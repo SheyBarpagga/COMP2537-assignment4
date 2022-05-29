@@ -4,13 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getUser() {
 
-    fetch(`https://pokedex-assignment3.herokuapp.com/user`)
-    .then(response => response.json())
-    .then(function(data) {
+    $.ajax({
+        url: "https://pokedex-assignment3.herokuapp.com/user",
+        type: "get",
+        success: function(data) {
         var id = sessionStorage.getItem("user");
         var table = document.getElementById("user-table");
+        data = $.parseJSON(data);
         for (const element of data) {
-
             tr = table.insertRow();
 
             var id = tr.insertCell();
@@ -32,5 +33,6 @@ function getUser() {
             type.appendChild(document.createTextNode(`${element.type}`));
             update.appendChild(updateA);
         }
+    }
     })
 }
