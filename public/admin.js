@@ -27,7 +27,8 @@ function getUser() {
             updateA.classList.add("abutton");
 
             updateA.addEventListener("click", () => {
-                window.location.href = "/update";
+                sessionStorage.setItem("update", `${element._id}`);
+                return window.location.href = "/update.html";
             })
 
             id.appendChild(document.createTextNode(`${element._id}`));
@@ -54,6 +55,8 @@ function createUser() {
             password: `${password}`,
             type: `${type}`
         },
-        success: (res)=>{console.log(res)}
+        success: function() {
+            window.location.href = '/admin.html'
+        }
     })
 }
