@@ -1,9 +1,9 @@
 
 var counter = 0;
 document.addEventListener("DOMContentLoaded", () => {
-    var l = sessionStorage.getItem("loggedin") 
-    if (l == "false") {
-        return window.location.href = "/login.html";
+    var admin = sessionStorage.getItem("admin") 
+    if (!(admin === "y")) {
+        $("#admin").remove();
     }
     getPoke();
     document.getElementById("logout").addEventListener("click", () => {

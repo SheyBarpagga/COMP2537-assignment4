@@ -14,11 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         sessionStorage.setItem("logged-in", true);
                         sessionStorage.setItem("user", `${element._id}`);
                         sessionStorage.setItem("cart", []);
+                        sessionStorage.setItem("admin", "y");
                         return window.location.href = "/admin.html";
                     }
                     sessionStorage.setItem("logged-in", true);
                     sessionStorage.setItem("user", `${element._id}`);
                     sessionStorage.setItem("cart", []);
+                    sessionStorage.setItem("admin", "n");
                     return window.location.href = "/user.html";
                 }
             });
