@@ -190,6 +190,12 @@ app.get('https://fathomless-fortress-22361.herokuapp.com/admin.html', function(r
 
 });
 
+app.get('https://fathomless-fortress-22361.herokuapp.com/game.html', function(req, res) {
+
+      res.send('/public/game.html');
+
+});
+
 app.use(express.static('./public'));
 app.use(express.static('/public/pikachu.jpg/'))
 
