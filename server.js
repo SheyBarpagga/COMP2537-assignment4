@@ -93,7 +93,7 @@ app.post('/admin/update', function(req, res) {
 });
 })
 
-app.get("/admin/delete", function(req, res) {
+app.post("/admin/delete", function(req, res) {
   userModel.remove({
     '_id': req.body.id
   }, function(err, data){

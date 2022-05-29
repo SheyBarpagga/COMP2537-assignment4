@@ -44,7 +44,7 @@ function deleteUser() {
 
     $.ajax({
         url: "https://fathomless-fortress-22361.herokuapp.com/admin/delete",
-        type: "get",
+        type: "post",
         data: {
             id: `${id}`
         },
