@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
     $("#start").on("click", setUp);
 
@@ -13,19 +14,18 @@ function clickCard() {
         $(this).toggleClass("flip");
 
         if(!hasFlippedCard){
-            firstCard = $(this).find('.front_face')[0]
-            // console.log(firstCard);
+            firstCard = $(this).find('.frontface')[0]
             hasFlippedCard = true;
         }else{
             // 2nd card
-            secondCard =  $(this).find('.front_face')[0]
+            secondCard =  $(this).find('.frontface')[0]
             console.log(firstCard, secondCard);
             hasFlippedCard = false;
 
             if(
-                $(`#${firstCard.id}`).attr("src") 
-                == 
-                $(`#${secondCard.id}`).attr("src")
+                $(`#${firstCard.id}`)
+                ===
+                $(`#${secondCard.id}`)
                 )
             {
                 console.log("A Match!");
@@ -33,11 +33,17 @@ function clickCard() {
                 // disable cards
             }else{
                 console.log("Not A Match!");
-                // unflip cards
+                setTimeout(() => {
+                    $(this).toggleClass("flip");
+                    $(firstCard.parentElement).toggleClass("flip");
+                }, 1000)
+                
             }
         }
     })
 }
+
+
 
 function setUp() {
     console.log("something");
@@ -61,30 +67,43 @@ function setUp() {
 
         front = document.createElement("img");
         front.srcset = "/card.jpg"
-        front.classList.add("frontface");
+        front.classList.add("backface");
 
         back = document.createElement("img");
         back.srcset = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${random}.png`;
-        back.classList.add("backface");
+        back.classList.add("frontface");
+        back.setAttribute("id", random);
 
         cont.classList.add("card");
-        cont.appendChild(front);
         cont.appendChild(back);
+        cont.appendChild(front);        
+
 
         cont.style.width = `${Math.floor(100/width)}%`;
 
-        $("game-cont").append(cont);
-        cardList.push(cont);
-        cardList.push(cont);
+        cont.setAttribute("id", random);
+        cardList.push(`
+        <div class="card" style="width: ${Math.floor(100/width)}%;">
+            <img src=${`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${random}.png`} class="frontface" id="${random}">
+            <img src='/card.jpg' class="backface">
+        </div>
+        `)
+        cardList.push(`
+        <div class="card" style="width: ${Math.floor(100/width)}%;">
+            <img src=${`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${random}.png`} class="frontface" id="${random}">
+            <img src='/card.jpg' class="backface">
+        </div>
+        `)
+
     }
     
     cardList = shuffle(cardList);
-    console.log(cardList.length)
     for(var x = 0; x < cardList.length; x++) {
-        document.getElementById("game-cont").appendChild(cardList[x]);
+        $("#game-cont").append(cardList[x]);
     }
 
     clickCard();
+
 }
 
 function shuffle(arr) {
@@ -94,5 +113,5 @@ function shuffle(arr) {
         arr[x] = arr[place];
         arr[place] = temp;
     }
-    return arr;
+    return arr
 }
