@@ -8,8 +8,8 @@ $(document).ready(() => {
 hasFlippedCard = false;
 firstCard = undefined
 secondCard = undefined
+total = 0;
 function clickCard() {
-
     $(".card").on("click", function click() {
         $(this).toggleClass("flip");
 
@@ -19,15 +19,15 @@ function clickCard() {
         }else{
             secondCard =  $(this).find('.frontface')[0]
             hasFlippedCard = false;
-            console.log($(`#${firstCard.id}`))
-            console.log($(`#${secondCard.id}`))
             if(
                 $(`#${firstCard.id}`).attr("src")
                 ==
                 $(`#${secondCard.id}`).attr("src")
                 )
             {
-                console.log("A Match!");
+                if(firstCard.parentElement == secondCard.parentElement) {
+                    return
+                }
 
                 var oldF = firstCard.parentElement;
                 var newNodeF = oldF.cloneNode(true);
@@ -36,6 +36,13 @@ function clickCard() {
                 var oldS = secondCard.parentElement;
                 var newNodeS = oldS.cloneNode(true);
                 oldS.parentElement.replaceChild(newNodeS, oldS);
+                total++;
+                if(total == (firstCard.parentElement.childElementCount - 1)) {
+                    setTimeout(() => {
+                        win(total);
+                    }, 2000)
+                }
+                console.log("Match!");
             }else{
                 console.log("Not A Match!");
                 setTimeout(() => {
@@ -120,3 +127,20 @@ function shuffle(arr) {
     }
     return arr
 }
+
+
+function win(total) {
+    $("#game-cont").html(``);
+    $("#win").append(`
+
+            <h1>Congratulations!</h1>
+            <h3>You managed to remember ${total} Pokemon!</h3>
+            <br>
+    `)
+}
+
+{/* <div class="center">
+<div class="center-75">
+
+</div>
+    </div> */}
