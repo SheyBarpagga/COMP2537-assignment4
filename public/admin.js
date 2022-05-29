@@ -42,9 +42,9 @@ function getUser() {
 
 function createUser() {
 
-    email = $("#email").text();
-    password = $("#password").text();
-    type = $("#type").text();
+    email = $("#email").val();
+    password = $("#password").val();
+    type = $("#type").val();
 
     $.ajax({
         url: "https://fathomless-fortress-22361.herokuapp.com/admin/insert",
