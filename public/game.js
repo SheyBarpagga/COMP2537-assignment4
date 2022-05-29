@@ -10,7 +10,7 @@ firstCard = undefined
 secondCard = undefined
 function clickCard() {
 
-    $(".card").on("click", function () {
+    $(".card").on("click", function click() {
         $(this).toggleClass("flip");
 
         if(!hasFlippedCard){
@@ -21,16 +21,21 @@ function clickCard() {
             secondCard =  $(this).find('.frontface')[0]
             console.log(firstCard, secondCard);
             hasFlippedCard = false;
-
+            console.log($(`#${firstCard.id}`))
+            console.log($(`#${secondCard.id}`))
             if(
-                $(`#${firstCard.id}`)
-                ===
-                $(`#${secondCard.id}`)
+                $(`#${firstCard.id}`).attr("src")
+                ==
+                $(`#${secondCard.id}`).attr("src")
                 )
             {
                 console.log("A Match!");
-                // inc a global 
-                // disable cards
+                var oldF = firstCard.parentElement;
+                var newNodeF = oldF.cloneNode(true);
+                oldF.parentElement.replaceChild(newNodeF, oldF);
+                var oldS = secondCard.parentElement;
+                var newNodeS = oldS.cloneNode(true);
+                oldS.parentElement.replaceChild(newNodeS, oldS);
             }else{
                 console.log("Not A Match!");
                 setTimeout(() => {
@@ -61,7 +66,7 @@ function setUp() {
 
     for(var x = 0; x < (Math.floor(Number(numPoke) / 2) + 1); x++) {
 
-        var random = Math.floor(Math.random() * 900);
+        var random = Math.floor(Math.random() * 800);
 
         cont = document.createElement("div");
 
@@ -98,7 +103,7 @@ function setUp() {
     }
     
     cardList = shuffle(cardList);
-    for(var x = 0; x < cardList.length; x++) {
+    for(var x = 0; x < cardList.length - 1; x++) {
         $("#game-cont").append(cardList[x]);
     }
 
