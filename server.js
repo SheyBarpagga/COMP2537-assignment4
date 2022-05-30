@@ -31,9 +31,9 @@ const TimesSchema = new mongoose.Schema({
 });
 
 const GamesSchema = new mongoose.Schema({
-  number: String,
+  num: String,
   win: Number,
-  time: Date,
+  time: String,
   id: String
 });
 
@@ -158,7 +158,7 @@ app.put('/times/insert', function(req, res) {
 
 app.put('/games/insert', function(req, res) {
   gameModel.create({
-    'number': req.body.number,
+    'num': req.body.num,
     'win': req.body.win,
     'date': req.body.date,
     'id': req.body.id
