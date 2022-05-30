@@ -1,7 +1,7 @@
 
 $(document).ready(() => {
     $("#start").on("click", setUp);
-
+    createGames();
 })
 
 
@@ -61,7 +61,7 @@ function clickCard() {
 function setUp() {
 
     var cardList = [];
-    createGames("lose");
+    createGames();
     timer();
 
     var numPoke = $("#pokemon").val();
@@ -165,7 +165,7 @@ function timer() {
         seconds--;
         if(seconds <= 0) {
             clearInterval(interval);
-            createGames("lose");
+            
             $("#game-cont").html(``);
             $("#countdown").html(``);
             $("#win").append(`
@@ -186,7 +186,7 @@ function timer() {
 }
 
 
-function createGames(win) {
+function createGames() {
 
     id = sessionStorage.getItem("user");
     id = id.trim();
@@ -196,10 +196,10 @@ function createGames(win) {
 
     $.ajax({
         url: "https://fathomless-fortress-22361.herokuapp.com/games/insert",
-        type: "put",
+        type: "post",
         data: {
             num: `${number}`,
-            win: `${win}`,
+            win: `win`,
             date: `${date}`,
             id: `${id}`
         },

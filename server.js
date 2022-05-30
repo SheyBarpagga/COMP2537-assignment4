@@ -156,7 +156,7 @@ app.put('/times/insert', function(req, res) {
 
 
 
-app.put('/games/insert', function(req, res) {
+app.post('/games/insert', function(req, res) {
   gameModel.create({
     'num': req.body.num,
     'win': req.body.win,
