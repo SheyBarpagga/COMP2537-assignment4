@@ -1,7 +1,6 @@
 
 $(document).ready(() => {
     $("#start").on("click", setUp);
-    createGames();
 })
 
 
@@ -61,7 +60,6 @@ function clickCard() {
 function setUp() {
 
     var cardList = [];
-    createGames();
     timer();
 
     var numPoke = $("#pokemon").val();
@@ -136,9 +134,8 @@ function shuffle(arr) {
 
 function win(total) {
     $("#game-cont").html(``);
-    $("#countdown").html(``);
+    $("#countdown").html(`:)`);
     $("#win").append(`
-
             <h1>Congratulations!</h1>
             <h3>You managed to remember ${total} Pokemon!</h3>
             <br>
@@ -165,7 +162,6 @@ function timer() {
         seconds--;
         if(seconds <= 0) {
             clearInterval(interval);
-            
             $("#game-cont").html(``);
             $("#countdown").html(``);
             $("#win").append(`
@@ -181,47 +177,9 @@ function timer() {
                     <br>
                     <br>
             `)
+        } else if (document.getElementById("win").childElementCount > 2) {
+            clearInterval(interval);
+            $("#countdown").html(``);
         }
     }, 1000)
-}
-
-
-function createGames() {
-
-    id = sessionStorage.getItem("user");
-    id = id.trim();
-    number = sessionStorage.getItem("number");
-    
-    date = new Date(Date.now());
-
-    $.ajax({
-        url: "https://fathomless-fortress-22361.herokuapp.com/games/insert",
-        type: "post",
-        data: {
-            num: `${number}`,
-            win: `win`,
-            date: `${date}`,
-            id: `${id}`
-        },
-        success: (res)=>{console.log(res)}
-    })
-}
-
-
-function getGames() {
-
-    id = sessionStorage.getItem("update");
-    id = id.trim();
-    
-    $.ajax({
-        url: "https://fathomless-fortress-22361.herokuapp.com/games",
-        type: "get",
-        data: {
-            id: `${id}`
-        },
-        success: function(data) {
-            
-        }
-    })
-
 }
