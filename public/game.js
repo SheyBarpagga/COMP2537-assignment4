@@ -134,7 +134,6 @@ function shuffle(arr) {
 
 function win(total) {
     $("#game-cont").html(``);
-    $("#countdown").html(`:)`);
     $("#win").append(`
             <h1>Congratulations!</h1>
             <h3>You managed to remember ${total} Pokemon!</h3>
