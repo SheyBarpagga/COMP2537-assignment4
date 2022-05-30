@@ -37,7 +37,9 @@ function clickCard() {
                 var newNodeS = oldS.cloneNode(true);
                 oldS.parentElement.replaceChild(newNodeS, oldS);
                 total++;
-                if(total == (firstCard.parentElement.childElementCount - 1)) {
+                var temp = document.getElementById("game-cont");
+                console.log(temp.childElementCount);
+                if(total == Math.floor((temp.childElementCount)/2)) {
                     setTimeout(() => {
                         win(total);
                     }, 2000)
@@ -58,8 +60,6 @@ function clickCard() {
 
 
 function setUp() {
-    console.log("something");
-
 
     var cardList = [];
 
@@ -135,6 +135,12 @@ function win(total) {
 
             <h1>Congratulations!</h1>
             <h3>You managed to remember ${total} Pokemon!</h3>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
     `)
 }
