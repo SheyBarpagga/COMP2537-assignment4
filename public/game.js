@@ -67,6 +67,9 @@ function setUp() {
     var numPoke = $("#pokemon").val();
     var height = $("#height").val();
     var width = $("#width").val();
+
+    sessionStorage.setItem("number", `${numPoke}`);
+
     $(".center").remove();
     if((Number(height) * Number(width)) != Number(numPoke)) {
         return
@@ -152,7 +155,6 @@ function win(total) {
 function timer() {
 
     var seconds = $("#time").val();
-
     seconds = Number(seconds);
 
     var lose = Number(seconds);
@@ -163,6 +165,7 @@ function timer() {
         seconds--;
         if(seconds <= 0) {
             clearInterval(interval);
+            createGames("lose");
             $("#game-cont").html(``);
             $("#countdown").html(``);
             $("#win").append(`
@@ -180,4 +183,50 @@ function timer() {
             `)
         }
     }, 1000)
+}
+
+
+function createGames(win) {
+
+    id = sessionStorage.getItem("update");
+    id = id.trim();
+    number = sessionStorage.getItem("number");
+    
+    date = new Date();
+
+    $.ajax({
+        url: "https://fathomless-fortress-22361.herokuapp.com/games/insert",
+        type: "put",
+        data: {
+            number: `${number}`,
+            win: `${win}`,
+            date: `${date}`,
+            id: `${id}`
+
+        },
+        success: function() {
+            window.location.href = '/admin.html'
+        }
+    })
+
+}
+
+
+function getGames() {
+
+    id = sessionStorage.getItem("update");
+    id = id.trim();
+    
+
+    $.ajax({
+        url: "https://fathomless-fortress-22361.herokuapp.com/games",
+        type: "get",
+        data: {
+            id: `${id}`
+        },
+        success: function(data) {
+            
+        }
+    })
+
 }

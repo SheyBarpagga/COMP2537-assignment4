@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     sessionStorage.setItem("cart", []);
                     sessionStorage.setItem("admin", "n");
                     return window.location.href = "/user.html";
+                } else {
+                    document.getElementById("email").style.borderColor = "red";
+                    document.getElementById("password").style.borderColor = "red";
                 }
             });
         })

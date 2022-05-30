@@ -26,7 +26,15 @@ mongoose.connect("mongodb+srv://packobtainer:37h3YwU3pc9Axpi@cluster0.xw7wz.mong
 const TimesSchema = new mongoose.Schema({
     text: String,
     hits: Number,
-    time: Date
+    time: Date, 
+
+});
+
+const GamesSchema = new mongoose.Schema({
+  number: String,
+  win: Number,
+  time: Date,
+  id: String
 });
 
 const UserSchema = new mongoose.Schema({
@@ -47,7 +55,7 @@ const timeLineModel = mongoose.model("times", TimesSchema);
 
 const cartModel = mongoose.model("cart", CartSchema);
 
-
+const gameModel = mongoose.model("games", GamesSchema);
 
 app.get("/user", function(req, res) {
   userModel.find({}, function(err, data){
@@ -125,7 +133,7 @@ app.get("/carts/get", function(req, res) {
       if (err){
         console.log("Error " + err);
       }else{
-        console.log("Data "+ JSON.stringify(data) );
+        console.log("Data "+ JSON.stringify(data));
       }
       res.send(JSON.stringify(data));
   });
@@ -145,6 +153,36 @@ app.put('/times/insert', function(req, res) {
     res.send(JSON.stringify(data));
 });
 })
+
+
+
+app.put('/games/insert', function(req, res) {
+  gameModel.create({
+    'number': req.body.number,
+    'win': req.body.win,
+    'date': req.body.date,
+    'id': req.body.id
+  }, function(err, data){
+    if (err){
+      console.log("Error " + err);
+    }else{
+      console.log("Data "+ JSON.stringify(data) );
+    }
+    res.send(JSON.stringify(data));
+});
+})
+
+app.get("/games", function(req, res) {
+  userModel.find({'_id': req.body.id}, function(err, data){
+    if (err){
+      console.log("Error " + err);
+    }else{
+      console.log("Data "+ JSON.stringify(data) );
+    }
+    res.send(JSON.stringify(data));
+});
+})
+
 
 app.get('/times/getAllEvents', function(req, res) {
 

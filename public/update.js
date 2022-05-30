@@ -36,12 +36,13 @@ function updateUser() {
 
 function deleteUser() {
 
-    id = sessionStorage.getItem("update");
-    id = id.trim();
+
     email = $("#email").val();
     password = $("#password").val();
     type = $("#type").val();
-
+    
+    id = sessionStorage.getItem("update");
+    id = id.trim();
     $.ajax({
         url: "https://fathomless-fortress-22361.herokuapp.com/admin/delete",
         type: "post",
