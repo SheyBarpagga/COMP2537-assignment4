@@ -38,7 +38,6 @@ function clickCard() {
                 oldS.parentElement.replaceChild(newNodeS, oldS);
                 total++;
                 var temp = document.getElementById("game-cont");
-                console.log(temp.childElementCount);
                 if(total == Math.floor((temp.childElementCount)/2)) {
                     setTimeout(() => {
                         win(total);
@@ -62,6 +61,8 @@ function clickCard() {
 function setUp() {
 
     var cardList = [];
+
+    timer();
 
     var numPoke = $("#pokemon").val();
     var height = $("#height").val();
@@ -116,6 +117,7 @@ function setUp() {
 
     clickCard();
 
+
 }
 
 function shuffle(arr) {
@@ -131,11 +133,13 @@ function shuffle(arr) {
 
 function win(total) {
     $("#game-cont").html(``);
+    $("#countdown").html(``);
     $("#win").append(`
 
             <h1>Congratulations!</h1>
             <h3>You managed to remember ${total} Pokemon!</h3>
             <br>
+            <a class="abutton" href="game.html" style="height: 25px; color: black;">Go again?</a>
             <br>
             <br>
             <br>
@@ -145,8 +149,35 @@ function win(total) {
     `)
 }
 
-{/* <div class="center">
-<div class="center-75">
+function timer() {
 
-</div>
-    </div> */}
+    var seconds = $("#time").val();
+
+    seconds = Number(seconds);
+
+    var lose = Number(seconds);
+
+    var interval = setInterval(() => {
+
+        $("#countdown").html(`${seconds}`);
+        seconds--;
+        if(seconds <= 0) {
+            clearInterval(interval);
+            $("#game-cont").html(``);
+            $("#countdown").html(``);
+            $("#win").append(`
+        
+                    <h1>You Lose!</h1>
+                    <h3>You had ${lose} seconds to win this round. Maybe go again with more time.</h3>
+                    <br>
+                    <a class="abutton" href="game.html" style="height: 25px; color: black;">Go again?</a>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+            `)
+        }
+    }, 1000)
+}

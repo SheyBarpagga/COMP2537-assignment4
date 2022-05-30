@@ -50,7 +50,6 @@
             }
 
             footer {
-                position: absolute;
                 height: 100px;
                 left: 0;
                 bottom: 0;
@@ -68,7 +67,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-            
+                min-height: 100vh;
             }
             #logo {
                 display: block;
@@ -190,6 +189,9 @@
             </nav>
         </header>
         <div id="main-container">
+            <div id="outer">
+                <h1 id="countdown"></h1>
+            </div>
             <div class="center">
                 <form>
                     <h3 id="label"></h3>
@@ -202,6 +204,9 @@
 
                     <label for="height">Height: </label>
                     <input type="number" id="height" name="height">
+
+                    <label for="time">Time: </label>
+                    <input type="number" id="time" name="time">
 
                     <a class="abutton" id="start">start</a>
                 </form>
